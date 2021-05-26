@@ -1,6 +1,8 @@
 package pl.gp.MotoService.entity;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -10,6 +12,7 @@ public class TechReview {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate releaseData;
     private double costs;
 

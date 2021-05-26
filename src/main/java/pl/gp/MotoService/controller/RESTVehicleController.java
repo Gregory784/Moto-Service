@@ -3,6 +3,7 @@ package pl.gp.MotoService.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.gp.MotoService.entity.Vehicle;
+import pl.gp.MotoService.repository.insurance.InsuranceService;
 import pl.gp.MotoService.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
@@ -10,12 +11,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/vehicle")
-public class VehicleController {
+public class RESTVehicleController {
 
     private final VehicleService vehicleService;
+    private final InsuranceService insuranceService;
 
-    public VehicleController(final VehicleService vehicleService) {
+    public RESTVehicleController(final VehicleService vehicleService, final InsuranceService insuranceService) {
         this.vehicleService = vehicleService;
+        this.insuranceService = insuranceService;
     }
 
     @GetMapping

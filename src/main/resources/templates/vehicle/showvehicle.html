@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Vehicles</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<fieldset>
+<h2>Vehicles List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Data zakupu</th>
+        <th>Wydatki</th>
+        <th>OC/AC</th>
+        <th>Przegląd</th>
+        <th>Serwis</th>
+        <th>Aktualny przebieg</th>
+    </tr>
+    </thead>
+<!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
+    <tbody th:each="vehicle : ${vehicles}">
+    <tr style="height: 75px">
+        <td> <button th:text="${vehicle.name}"></button></td>
+        <td th:text="${vehicle.purchaseData}"></td>
+        <td th:text="${vehicle.operatingCosts}"></td>
+        <td><button type="button">Zobacz</button></td>
+        <td><button type="button">Zobacz</button></td>
+        <td><button type="button">Zobacz</button></td>
+        <td>
+            <a th:text="${vehicle.mileage} + km"></a>
+            <button style="background-color: white; color: cornflowerblue; border: 2px solid #4CAF50; border-radius: 24px" type="submit">aktualizuj</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</fieldset>
+<fieldset>
+    <div>
+    <a th:href="@{/vehicle/addvehicle}">
+        <button>Dodaj pojazd</button>
+    </a>
+    </div>
+    <div>
+    <button type="button">Archiwum pojazdów</button>
+    </div>
+</fieldset>
+</body>
+</html>

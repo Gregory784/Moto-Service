@@ -1,6 +1,10 @@
 package pl.gp.MotoService.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Entity
@@ -9,9 +13,13 @@ public class Insurance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message = "Pole Nazwa nie może być puste")
     private String name;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate releaseData;
+    @NotBlank(message = "Pole Nazwa nie możę być puste")
     private String insuranceNumber;
+    @DecimalMin(value = "0")
     private double costs;
 
     public int getId() {
@@ -57,5 +65,16 @@ public class Insurance {
     public Insurance setCosts(final double costs) {
         this.costs = costs;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Insurance{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", releaseData=" + releaseData +
+                ", insuranceNumber='" + insuranceNumber + '\'' +
+                ", costs=" + costs +
+                '}';
     }
 }

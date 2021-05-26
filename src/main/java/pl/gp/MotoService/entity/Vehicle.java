@@ -1,6 +1,13 @@
 package pl.gp.MotoService.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Entity
@@ -10,16 +17,32 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private boolean archives = false;
+    @NotBlank(message = "Pole Nazwa nie może być puste")
     private String name;
+    @NotBlank (message = "Pole Model nie może być puste")
     private String model;
+    @Size(min = 17, max = 17, message = "Numer VIN powinien zawierać 17 znaków")
     private String vin;
+    @NotNull (message = "Wprowadź datę produkcji")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate productionData;
+    @NotNull(message = "Wpradź datę rejestracji")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate purchaseData;
+    @NotBlank(message = "Pole Numer rejestracyjny nie może być puste")
     private String registrationId;
+    @DecimalMin(value = "0")
     private int mileage;
+    @DecimalMin(value = "0")
     private int operatingCosts;
 
-    public Vehicle(final int id, final boolean archives, final String name, final String model, final String vin, final LocalDate productionData, final LocalDate purchaseData, final String registrationId, final int mileage, final int operatingCosts) {
+    @OneToOne(cascade = CascadeType.ALL)
+    private Insurance insurance;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private TechReview techReview;
+
+    public Vehicle(final int id, final boolean archives, final String name, final String model, final String vin, final LocalDate productionData, final LocalDate purchaseData, final String registrationId, final int mileage, final int operatingCosts, final Insurance insurance, final TechReview techReview) {
         this.id = id;
         this.archives = archives;
         this.name = name;
@@ -30,11 +53,11 @@ public class Vehicle {
         this.registrationId = registrationId;
         this.mileage = mileage;
         this.operatingCosts = operatingCosts;
+        this.insurance = insurance;
+        this.techReview = techReview;
     }
 
-    public Vehicle() {
-
-    }
+    public Vehicle() {}
 
     public int getId() {
         return id;
@@ -126,19 +149,21 @@ public class Vehicle {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "id=" + id +
-                ", archives=" + archives +
-                ", name='" + name + '\'' +
-                ", model='" + model + '\'' +
-                ", vin='" + vin + '\'' +
-                ", productionData=" + productionData +
-                ", purchaseData=" + purchaseData +
-                ", registrationId='" + registrationId + '\'' +
-                ", mileage=" + mileage +
-                ", operatingCosts=" + operatingCosts +
-                '}';
+    public Insurance getInsurance() {
+        return insurance;
+    }
+
+    public Vehicle setInsurance(final Insurance insurance) {
+        this.insurance = insurance;
+        return this;
+    }
+
+    public TechReview getTechReview() {
+        return techReview;
+    }
+
+    public Vehicle setTechReview(final TechReview techReview) {
+        this.techReview = techReview;
+        return this;
     }
 }
