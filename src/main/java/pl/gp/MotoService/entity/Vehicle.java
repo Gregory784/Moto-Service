@@ -39,7 +39,7 @@ public class Vehicle {
     @OneToOne(cascade = CascadeType.ALL)
     private Insurance insurance;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private TechReview techReview;
 
     public Vehicle(final int id, final boolean archives, final String name, final String model, final String vin, final LocalDate productionData, final LocalDate purchaseData, final String registrationId, final int mileage, final int operatingCosts, final Insurance insurance, final TechReview techReview) {
@@ -165,5 +165,23 @@ public class Vehicle {
     public Vehicle setTechReview(final TechReview techReview) {
         this.techReview = techReview;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", archives=" + archives +
+                ", name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                ", vin='" + vin + '\'' +
+                ", productionData=" + productionData +
+                ", purchaseData=" + purchaseData +
+                ", registrationId='" + registrationId + '\'' +
+                ", mileage=" + mileage +
+                ", operatingCosts=" + operatingCosts +
+                ", insurance=" + insurance +
+                ", techReview=" + techReview +
+                '}';
     }
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle details</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<fieldset>
+<h2>Szczegóły pojazdu:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Nazwa</th>
+        <th>Model</th>
+        <th>Numer VIN</th>
+        <th>Data produkcji</th>
+        <th>Data zakupu</th>
+        <th>Numer rejestracyjny</th>
+        <th>Przebieg</th>
+        <th>Koszt zakupu</th>
+    </tr>
+    </thead>
+<!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
+    <tbody th:each="vehicle : ${vehicledetails}">
+    <tr style="height: 75px">
+        <td th:text="${vehicle.name}"></td>
+        <td th:text="${vehicle.model}"></td>
+        <td th:text="${vehicle.vin}"></td>
+        <td th:text="${vehicle.productionData}"></td>
+        <td th:text="${vehicle.purchaseData}"></td>
+        <td th:text="${vehicle.registrationId}"></td>
+        <td th:text="${vehicle.mileage} +  ' km'"></td>
+        <td th:text="${vehicle.operatingCosts} + ' pln'"></td>
+    </tr>
+    </tbody>
+</table>
+</fieldset>
+<fieldset>
+    <div>
+    <a th:href="@{/panel/vehicleslist}"><button>Wróć do panelu głównego</button>
+    </a>
+        <a th:href="@{/panel/arch/__${vehicledetails.id}__}"><button>Przenieś pojazd do archiwum</button></a>
+    </div>
+</fieldset>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD Vehicle</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+
+   <!-- <a th:text="${vehicle.name}"></a>
+    <a th:text="${vehicle.model}"></a>-->
+    <!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
+    <form th:onerror="" action="#" method="post" th:action="@{/panel/updatemileage}" th:object="${vehicle}">
+        <fieldset th:if="${#fields.hasAnyErrors()}" > Błędnie wprowadzone dane:
+            <ul>
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
+            </ul>
+        </fieldset>
+        <fieldset>
+        <legend>Weryfikacja przebiegu dla:
+        <a th:text="${vehicle.get().name}"></a>
+        <a th:text="${vehicle.get().model}"></a>
+        </legend>
+
+            <label>Aktualny przebieg to:
+                <input min="0" th:field="*{mileage}"/>
+                <input type="hidden" th:field="*{id}"/>
+            </label>
+        <p>
+            <button type="submit">Aktualizuj</button>
+            <button type="reset">Wróć</button>
+        </p>
+        </fieldset>
+    </form>
+</main>
+</body>
+</html>

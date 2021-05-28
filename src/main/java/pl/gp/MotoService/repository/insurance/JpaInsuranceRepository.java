@@ -42,4 +42,5 @@ public class JpaInsuranceRepository implements InsuranceService{
     public void deleteInsuranceByID(final int id) {
         insuranceRepository.deleteById(id);
     }
+
 }

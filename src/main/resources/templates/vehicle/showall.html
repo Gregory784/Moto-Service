@@ -8,12 +8,12 @@
 </head>
 <body>
 <fieldset>
-<h2>Vehicles List</h2>
+<h2>Lista pojazdów:</h2>
 <table>
     <thead>
     <tr>
         <th>Nazwa</th>
-        <th>Data zakupu</th>
+        <th>Model</th>
         <th>Wydatki</th>
         <th>OC/AC</th>
         <th>Przegląd</th>
@@ -24,15 +24,17 @@
 <!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
     <tbody th:each="vehicle : ${vehicles}">
     <tr style="height: 75px">
-        <td> <button th:text="${vehicle.name}"></button></td>
-        <td th:text="${vehicle.purchaseData}"></td>
-        <td th:text="${vehicle.operatingCosts}"></td>
+        <td>
+            <a th:href="@{/panel/getvehicle/__${vehicle.id}__}"><button th:text="${vehicle.name}"></button></a>
+        </td>
+        <td th:text="${vehicle.model}"></td>
+        <td th:text="${vehicle.operatingCosts} +' pln'">/td>
         <td><button type="button">Zobacz</button></td>
         <td><button type="button">Zobacz</button></td>
         <td><button type="button">Zobacz</button></td>
         <td>
-            <a th:text="${vehicle.mileage} + km"></a>
-            <button style="background-color: white; color: cornflowerblue; border: 2px solid #4CAF50; border-radius: 24px" type="submit">aktualizuj</button>
+            <a th:text="${vehicle.mileage} + ' km  '"></a>
+            <a th:href="@{/panel/updatemileage/__${vehicle.id}__}"><button style="background-color: white; color: cornflowerblue; border: 2px solid #4CAF50; border-radius: 24px" >aktualizuj</button></a>
         </td>
     </tr>
     </tbody>
@@ -40,7 +42,7 @@
 </fieldset>
 <fieldset>
     <div>
-    <a th:href="@{/vehicle/addvehicle}">
+    <a th:href="@{/panel/addvehicle}">
         <button>Dodaj pojazd</button>
     </a>
     </div>

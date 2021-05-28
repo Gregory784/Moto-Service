@@ -9,7 +9,7 @@
 <body>
 <main>
     <!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
-    <form th:onerror="" action="#" method="post" th:action="@{/vehicle/addvehicle}" th:object="${vehicle}">
+    <form th:onerror="" action="#" method="post" th:action="@{/panel/addvehicle}" th:object="${vehicle}">
         <fieldset th:if="${#fields.hasAnyErrors()}" > Błędnie wprowadzone dane:
             <ul>
                 <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
@@ -76,6 +76,7 @@
         <p>
             <button type="submit">Dodaj</button>
             <button type="reset">Wyczyść</button>
+            <a th:href="@{/panel/vehicleslist}"><button type="button">Wróć do panelu głównego</button></a>
         </p>
     </form>
 </main>
