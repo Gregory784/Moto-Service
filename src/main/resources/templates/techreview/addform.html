@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add TechReview</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+    <form th:onerror="" action="#" method="post" th:action="@{/panel/addtech/}" th:object="${tech}">
+        <fieldset th:if="${#fields.hasAnyErrors()}" > Incorrect data:
+            <ul>
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
+            </ul>
+        </fieldset>
+            <fieldset>
+            <legend>Enter data from a technical review</legend>
+                <label>Release Data
+                    <input type="date" th:field="*{releaseData}"/>
+                </label>
+                <label>Price
+                    <input type="number" min="0" th:field="*{costs}"/>
+                </label>
+                <label> -- Select vehicle --
+
+                        <select th:field="*{vehicle}">
+                            <option th:each="vehicle : ${veh}" type="radio"
+                                    th:value="${vehicle.id}"
+                                    th:text="${vehicle.name}"></option>
+                        </select>
+
+                </label>
+            </fieldset>
+        <p>
+            <button type="submit">Confirm</button>
+            <button type="reset">Clear</button>
+            <a th:href="@{/panel/vehicleslist/}"><button type="button">Go back to the main panel</button></a>
+        </p>
+    </form>
+</main>
+</body>
+</html>

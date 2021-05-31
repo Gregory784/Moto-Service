@@ -1,7 +1,7 @@
-package pl.gp.MotoService.repository.vehicle;
+package pl.gp.moto_service.repository.vehicle;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.gp.MotoService.entity.Vehicle;
+import pl.gp.moto_service.entity.Vehicle;
 
 import java.util.List;
 

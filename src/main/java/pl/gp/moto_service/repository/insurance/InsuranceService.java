@@ -1,6 +1,6 @@
-package pl.gp.MotoService.repository.insurance;
+package pl.gp.moto_service.repository.insurance;
 
-import pl.gp.MotoService.entity.Insurance;
+import pl.gp.moto_service.entity.Insurance;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +15,6 @@ public interface InsuranceService {
     void updateInsurance(Insurance insurance);
 
     void deleteInsuranceByID(int id);
+
+    List<Insurance> getInsuranceByVehicle_Id(int id);
 }

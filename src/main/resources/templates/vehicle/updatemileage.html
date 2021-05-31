@@ -11,7 +11,7 @@
 
    <!-- <a th:text="${vehicle.name}"></a>
     <a th:text="${vehicle.model}"></a>-->
-    <!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
+    <!--/*@thymesVar id="vehicle" type="pl.gp.moto_service.entity.Vehicle"*/-->
     <form th:onerror="" action="#" method="post" th:action="@{/panel/updatemileage}" th:object="${vehicle}">
         <fieldset th:if="${#fields.hasAnyErrors()}" > Błędnie wprowadzone dane:
             <ul>

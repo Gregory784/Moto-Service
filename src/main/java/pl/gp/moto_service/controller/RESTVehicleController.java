@@ -1,10 +1,10 @@
-package pl.gp.MotoService.controller;
+package pl.gp.moto_service.controller;
 
 
 import org.springframework.web.bind.annotation.*;
-import pl.gp.MotoService.entity.Vehicle;
-import pl.gp.MotoService.repository.insurance.InsuranceService;
-import pl.gp.MotoService.repository.vehicle.VehicleService;
+import pl.gp.moto_service.entity.Vehicle;
+import pl.gp.moto_service.repository.insurance.InsuranceService;
+import pl.gp.moto_service.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
 import java.util.List;

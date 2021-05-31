@@ -1,7 +1,7 @@
-package pl.gp.MotoService.repository.techReview;
+package pl.gp.moto_service.repository.tech_review;
 
 import org.springframework.stereotype.Repository;
-import pl.gp.MotoService.entity.TechReview;
+import pl.gp.moto_service.entity.TechReview;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,5 +40,10 @@ public class JpaTechReviewRepository implements TechReviewService{
     @Override
     public void deleteTechReviewsByID(final int id) {
         techReviewRepository.deleteById(id);
+    }
+
+    @Override
+    public List<TechReview> findTechReviewsByVehicleId(final int id) {
+        return techReviewRepository.findTechReviewsByVehicleId(id);
     }
 }

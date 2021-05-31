@@ -1,7 +1,8 @@
-package pl.gp.MotoService.repository.vehicle;
+package pl.gp.moto_service.repository.vehicle;
 
-import pl.gp.MotoService.entity.Vehicle;
+import pl.gp.moto_service.entity.Vehicle;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,7 +10,7 @@ public interface VehicleService {
 
     List<Vehicle> getVehicles();
 
-    void createVehicle(Vehicle vehicle);
+    void createVehicle(@Valid Vehicle vehicle);
 
     Optional<Vehicle> getVehicleByID(int id);
 

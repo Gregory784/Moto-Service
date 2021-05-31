@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical review details</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<fieldset>
+<h2>Technical reviews list:</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Release data</th>
+        <th>Expens</th>
+    </tr>
+    </thead>
+    <!--/*@thymesVar id="tech" type="pl.gp.moto_service.entity.TechReview"*/-->
+    <tbody th:each="t : ${tech}">
+    <tr style="height: 75px">
+        <td th:text="${t.releaseData}"></td>
+        <td th:text="${t.costs} + ' pln'"></td>
+    </tr>
+    </tbody>
+</table>
+</fieldset>
+<fieldset>
+    <div>
+        <a th:href="@{/panel/vehicleslist}"><button>Back to main panel</button></a>
+        <a th:href="@{/panel/addtech}"><button>Add TechReview</button></a>
+    </div>
+</fieldset>
+</body>
+</html>

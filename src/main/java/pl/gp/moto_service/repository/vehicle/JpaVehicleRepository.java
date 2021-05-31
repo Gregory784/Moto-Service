@@ -1,8 +1,9 @@
-package pl.gp.MotoService.repository.vehicle;
+package pl.gp.moto_service.repository.vehicle;
 
 import org.springframework.stereotype.Repository;
-import pl.gp.MotoService.entity.Vehicle;
+import pl.gp.moto_service.entity.Vehicle;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 

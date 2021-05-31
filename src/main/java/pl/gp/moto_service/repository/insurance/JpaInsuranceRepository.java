@@ -1,7 +1,7 @@
-package pl.gp.MotoService.repository.insurance;
+package pl.gp.moto_service.repository.insurance;
 
 import org.springframework.stereotype.Repository;
-import pl.gp.MotoService.entity.Insurance;
+import pl.gp.moto_service.entity.Insurance;
 
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +41,11 @@ public class JpaInsuranceRepository implements InsuranceService{
     @Override
     public void deleteInsuranceByID(final int id) {
         insuranceRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Insurance> getInsuranceByVehicle_Id(final int id) {
+        return insuranceRepository.getInsuranceByVehicle_Id(id);
     }
 
 }

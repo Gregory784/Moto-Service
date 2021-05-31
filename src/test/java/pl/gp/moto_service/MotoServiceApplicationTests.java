@@ -1,4 +1,4 @@
-package pl.gp.MotoService;
+package pl.gp.moto_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -8,7 +8,6 @@
 </head>
 <body>
 <main>
-    <!--/*@thymesVar id="vehicle" type="pl.gp.MotoService.entity.Vehicle"*/-->
     <form th:onerror="" action="#" method="post" th:action="@{/panel/addvehicle}" th:object="${vehicle}">
         <fieldset th:if="${#fields.hasAnyErrors()}" > Błędnie wprowadzone dane:
             <ul>
@@ -16,67 +15,36 @@
             </ul>
         </fieldset>
         <fieldset>
-            <legend>Nowy Pojazd</legend>
-            <label>Nazwa
+            <legend>Add new vehicle</legend>
+            <label>Name
                 <input type="text" th:field="*{name}"/>
             </label>
             <label>Model
                 <input type="text" th:field="*{model}"/>
             </label>
-            <label>VIN
+            <label>VIN number
                 <input type="text" th:field="*{vin}"/>
             </label>
-            <label>Data produkcji
+            <label>Production data
                 <input type="date" th:field="*{productionData}"/>
             </label>
-            <label>Data zakupu
+            <label>Purchase data
                 <input type="date" th:field="*{purchaseData}"/>
             </label>
-            <label>Numer rejestracyjny
+            <label>Vehicle ID number
                 <input type="text" th:field="*{registrationId}"/>
             </label>
-            <label>Przebieg
+            <label>Current milage
                 <input type="number" min="0" th:field="*{mileage}"/>
             </label>
-            <label>Koszt zakupu
+            <label>Price
                 <input type="number" min="0" th:field="*{operatingCosts}"/>
             </label>
-                <fieldset>
-               <!-- <details onclose="">-->
-                <legend>Dodaj informacje o ubezpieczeniu</legend>
-                <label>Nazwa ubezpieczyciela
-
-                    <input type="text" th:field="*{insurance.name}"/>
-
-                </label>
-                <label>Data rozpoczęcia ubezpieczenia
-                    <input type="date" th:field="*{insurance.releaseData}"/>
-                </label>
-                <label>Numer polisy ubezpieczeniowej
-                    <input type="text" th:field="*{insurance.insuranceNumber}"/>
-                </label>
-                <label>Koszt zakupu ubezpieczenia
-                    <input type="number" min="0" th:field="*{insurance.costs}"/>
-                </label>
-                </fieldset>
-
-            <fieldset>
-                <!--<details onclose="">-->
-                <legend>Dodaj informacje o przeglądzie</legend>
-                <label>Data wykonania przeglądu
-                    <input type="date" th:field="*{techReview.releaseData}"/>
-                </label>
-                <label>Koszt przeglądu
-                    <input type="number" min="0" th:field="*{techReview.costs}"/>
-                </label>
-                </details>
-            </fieldset>
         </fieldset>
-
         <p>
-            <button type="submit">Dodaj</button>
-            <button type="reset">Wyczyść</button>
-            <a th:href="@{/panel/vehicleslist}"><button type="button">Wróć do panelu głównego</button></a>
+            <button type="submit">Add</button>
+            <button type="reset">Clear</button>
+            <a th:href="@{/panel/vehicleslist}"><button type="button">Back to main panel</button></a>
         </p>
     </form>
 </main>
