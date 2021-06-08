@@ -1,8 +1,8 @@
 package pl.gp.moto_service.entity;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -10,8 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Component
 @Data
-@NoArgsConstructor
 @Entity
 @Table(name = "insurance")
 public class Insurance {
@@ -32,4 +32,5 @@ public class Insurance {
     @NotNull(message ="The vehicle field cannot be null" )
     @ManyToOne
     private Vehicle vehicle;
+
 }

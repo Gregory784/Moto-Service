@@ -16,15 +16,24 @@
         <th>Commencement date</th>
         <th>Policy number</th>
         <th>Expens</th>
+        <th>Days to expiry</th>
     </tr>
     </thead>
     <!--/*@thymesVar id="insurance" type="pl.gp.moto_service.entity.Insurance"*/-->
-    <tbody th:each="insurance : ${insurance}">
+    <!--<tbody th:each="insurance : ${insurance}">
     <tr style="height: 75px">
         <td th:text="${insurance.name}"></td>
         <td th:text="${insurance.releaseData}"></td>
         <td th:text="${insurance.insuranceNumber}"></td>
         <td th:text="${insurance.costs} + ' pln'"></td>
+    </tr>-->
+    <tbody th:each="expire : ${expire}">
+    <tr style="height: 75px">
+        <td th:text="${expire.name}"></td>
+        <td th:text="${expire.releaseData}"></td>
+        <td th:text="${expire.insuranceNumber}"></td>
+        <td th:text="${expire.costs} + ' pln'"></td>
+        <td style="text-align: center" th:text="${expire.expireDay}"></td>
     </tr>
     </tbody>
 </table>

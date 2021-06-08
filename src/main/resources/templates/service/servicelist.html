@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles view</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<fieldset>
+    <h2>Services Panel <a th:text="${vehid.get().getName()}"></a> <a th:text="${vehid.get().getModel()}"></a></h2>
+    <fieldset>Your oils - check list:
+        <label>
+            <select th:field="*{oils}">
+                <option th:each="oil : ${oils}" type="radio"
+                        th:value="${oil.id}"
+                        th:text="${oil.oilName}+${oil.viscositySAE}"></option>
+            </select>
+            <a th:href="@{/panel/addoil}">
+                <button>Add new oil</button>
+            </a>
+        </label>
+    </fieldset>
+    <table style="text-align: center">
+        <thead>
+        <tr>
+            <th>Active</th>
+            <th>Type</th>
+            <th>Oil Name</th>
+        </tr>
+        </thead>
+        <!--/*@thymesVar id="service" type="pl.gp.moto_service.entity.Service"*/-->
+        <!--/*@thymesVar id="oil" type="pl.gp.moto_service.entity.Oil"*/-->
+        <tbody th:each="service : ${service}">
+        <tr style="height: 75px">
+            <td th:text="${service.active}"></td>
+            <td th:text="${service.serviceType}"></td>
+            <td th:text="${service.oil}"></td>
+            <!--<td th:text="${service.getOil().getOilName()}"></td>-->
+        </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a th:href="@{/panel/addservice/__${vehid.get().getId()}__}">
+            <button>Add service</button>
+        </a>
+        <a th:href="@{/panel/vehicleslist}">
+            <button>Back to Main panel</button>
+        </a>
+    </div>
+</fieldset>
+</body>
+</html>

@@ -15,9 +15,9 @@
         <th>Name</th>
         <th>Model</th>
         <th>Costs</th>
-        <th>Insurance</th>
-        <th>Technical Review</th>
-        <th>Service</th>
+        <th></th>
+        <th></th>
+        <th></th>
         <th>Current mileage</th>
     </tr>
     </thead>
@@ -29,9 +29,9 @@
         </td>
         <td th:text="${vehicle.model}"></td>
         <td th:text="${vehicle.operatingCosts} +' pln'">/td>
-        <td><a th:href="@{/panel/insurancelist/__${vehicle.id}__}"><button type="button">Details</button></a></td>
-        <td><a th:href="@{/panel/techlist/__${vehicle.id}__}"><button type="button">Details</button></td>
-        <td><button type="button">Details</button></td>
+        <td><a th:href="@{/panel/insurancelist/__${vehicle.id}__}"><button type="button">Insurance</button></a></td>
+        <td><a th:href="@{/panel/techlist/__${vehicle.id}__}"><button type="button">Technical Review</button></a></td>
+        <td><a th:href="@{/panel/service/__${vehicle.id}__}"><button type="button">Service</button></a></td>
         <td>
             <a th:text="${vehicle.mileage} + ' km  '"></a>
             <a th:href="@{/panel/updatemileage/__${vehicle.id}__}"><button style="background-color: white; color: cornflowerblue; border: 2px solid #4CAF50; border-radius: 24px" >update</button></a>

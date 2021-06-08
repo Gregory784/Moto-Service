@@ -5,7 +5,7 @@ import pl.gp.moto_service.entity.Insurance;
 import java.util.List;
 import java.util.Optional;
 
-public interface InsuranceService {
+public interface TechReviewServices {
     List<Insurance> getInsurance();
 
     void createInsurance(Insurance insurance);

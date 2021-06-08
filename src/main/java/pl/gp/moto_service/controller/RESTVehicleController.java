@@ -3,7 +3,7 @@ package pl.gp.moto_service.controller;
 
 import org.springframework.web.bind.annotation.*;
 import pl.gp.moto_service.entity.Vehicle;
-import pl.gp.moto_service.repository.insurance.InsuranceService;
+import pl.gp.moto_service.repository.insurance.TechReviewServices;
 import pl.gp.moto_service.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
@@ -14,9 +14,9 @@ import java.util.List;
 public class RESTVehicleController {
 
     private final VehicleService vehicleService;
-    private final InsuranceService insuranceService;
+    private final TechReviewServices insuranceService;
 
-    public RESTVehicleController(final VehicleService vehicleService, final InsuranceService insuranceService) {
+    public RESTVehicleController(final VehicleService vehicleService, final TechReviewServices insuranceService) {
         this.vehicleService = vehicleService;
         this.insuranceService = insuranceService;
     }

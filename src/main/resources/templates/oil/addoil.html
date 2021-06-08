@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD Insurance</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+    <form th:onerror="" action="#" method="post" th:action="@{/panel/addoil/}" th:object="${oil}">
+        <fieldset th:if="${#fields.hasAnyErrors()}" > Incorrect data:
+            <ul>
+                <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
+            </ul>
+        </fieldset>
+            <fieldset>
+            <legend>Add oil to list:</legend>
+                <label>Name
+                    <input type="text" th:field="*{oilName}"/>
+                </label>
+                <label>SAE example: 10W-40
+                    <input type="text" th:field="*{viscositySAE}"/>
+                </label>
+                <label>Quantity
+                    <input type="number" th:field="*{quantity}"/>
+                </label>
+                <label>Price
+                    <input type="number" min="0" th:field="*{oilCost}"/>
+                </label>
+            </fieldset>
+        <p>
+            <button type="submit">Confirm</button>
+            <button type="reset">Clear</button>
+            <a th:href="@{/panel/vehicleslist}"><button type="button">Go back to the main panel</button></a>
+        </p>
+    </form>
+</main>
+</body>
+</html>

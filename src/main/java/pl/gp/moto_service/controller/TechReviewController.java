@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.gp.moto_service.entity.TechReview;
 import pl.gp.moto_service.entity.Vehicle;
+import pl.gp.moto_service.model.TechViewModel;
 import pl.gp.moto_service.repository.tech_review.TechReviewService;
 import pl.gp.moto_service.repository.vehicle.VehicleService;
 
@@ -19,11 +20,11 @@ import java.util.List;
 public class TechReviewController {
     private final TechReviewService techReviewService;
     private final VehicleService vehicleService;
-    private final InsuranceController insuranceController;
+    private final TechViewModel techViewModel;
 
     @GetMapping("/techlist/{id}")
     public String showTech(@PathVariable int id, Model model){
-        model.addAttribute("tech", techReviewService.findTechReviewsByVehicleId(id));
+        model.addAttribute("tech", techViewModel.showInsurances(id));
         return "techreview/showtech";
     }
 

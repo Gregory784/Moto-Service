@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add TechReview</title>
+    <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
+</head>
+<body>
+<main>
+    <form method="post" th:action="@{/panel/addservice/}">
+            <fieldset>
+            <legend>Choose a type of service </legend>
+                <label>
+                    <select name="type">
+                        <option th:each="type : ${serviceType}" type="radio"
+                                th:value="${type}"
+                                th:text="${type}"
+
+                        ></option>
+                    </select>
+                </label>
+
+            </fieldset>
+        <p>
+            <button type="submit">Next</button>
+            <a th:href="@{/panel/vehicleslist/}"><button type="button">Go back to the main panel</button></a>
+        </p>
+    </form>
+</main>
+</body>
+</html>

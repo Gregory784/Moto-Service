@@ -14,15 +14,26 @@
     <tr>
         <th>Release data</th>
         <th>Expens</th>
+        <th>Days to expiry</th>
+        <th>Valid until</th>
     </tr>
     </thead>
     <!--/*@thymesVar id="tech" type="pl.gp.moto_service.entity.TechReview"*/-->
-    <tbody th:each="t : ${tech}">
+ <!--   <tbody th:each="t : ${tech}">
     <tr style="height: 75px">
         <td th:text="${t.releaseData}"></td>
         <td th:text="${t.costs} + ' pln'"></td>
     </tr>
+    </tbody>-->
+    <tbody th:each="tech : ${tech}">
+    <tr style="height: 75px">
+        <td th:text="${tech.releaseData}"></td>
+        <td th:text="${tech.costs} + ' pln'"></td>
+        <td style="text-align: center" th:text="${tech.expireDay}"></td>
+        <td style="text-align: center" th:text="${tech.endData}"></td>
+    </tr>
     </tbody>
+
 </table>
 </fieldset>
 <fieldset>

@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Data
@@ -37,5 +38,7 @@ public class Vehicle {
     private int mileage;
     @Min(value = 0)
     private int operatingCosts;
+
+
 
 }

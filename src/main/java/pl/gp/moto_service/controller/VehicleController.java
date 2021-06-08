@@ -1,29 +1,25 @@
 package pl.gp.moto_service.controller;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.gp.moto_service.entity.Vehicle;
-import pl.gp.moto_service.repository.insurance.InsuranceService;
 import pl.gp.moto_service.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
+@AllArgsConstructor
 @RequestMapping("panel")
 public class VehicleController {
 
     private final VehicleService vehicleService;
-    private final InsuranceService insuranceService;
 
-    public VehicleController(final VehicleService vehicleService, final InsuranceService insuranceService) {
-        this.vehicleService = vehicleService;
-        this.insuranceService = insuranceService;
-    }
 
     @GetMapping("/")
     public String test (){
