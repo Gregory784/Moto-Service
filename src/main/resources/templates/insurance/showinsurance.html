@@ -12,11 +12,13 @@
 <table>
     <thead>
     <tr>
+        <th>Active</th>
         <th>Name of the insurer</th>
         <th>Commencement date</th>
         <th>Policy number</th>
         <th>Expens</th>
         <th>Days to expiry</th>
+        <th>Policy expiry date</th>
     </tr>
     </thead>
     <!--/*@thymesVar id="insurance" type="pl.gp.moto_service.entity.Insurance"*/-->
@@ -29,19 +31,24 @@
     </tr>-->
     <tbody th:each="expire : ${expire}">
     <tr style="height: 75px">
+        <td th:text="${expire.active} ? 'No': 'Yes'"></td>
         <td th:text="${expire.name}"></td>
         <td th:text="${expire.releaseData}"></td>
         <td th:text="${expire.insuranceNumber}"></td>
         <td th:text="${expire.costs} + ' pln'"></td>
         <td style="text-align: center" th:text="${expire.expireDay}"></td>
+        <td th:text="${expire.endDate}"></td>
+
     </tr>
     </tbody>
 </table>
 </fieldset>
 <fieldset>
-    <div>
+    <div th:object="${vehId}">
         <a th:href="@{/panel/vehicleslist}"><button>Back to main panel</button></a>
         <a th:href="@{/panel/addinsurance}"><button>Add insurance</button></a>
+        <a th:href="@{/panel/insurancelist/__${vehId}__/all}"><button>Show all list</button></a>
+        <a th:href="@{/panel/insurancelist/__${vehId}__}"><button>Hide no active</button></a>
     </div>
 </fieldset>
 </body>

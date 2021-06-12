@@ -27,16 +27,14 @@ public class JpaVehicleRepository implements VehicleService {
 
     @Override
     public Optional<Vehicle> getVehicleByID(final int id) {
-
         return this.vehicleRepository.findById(id);
     }
 
     @Override
     public void updateVehicle(final Vehicle vehicle) {
-        if (this.getVehicleByID(vehicle.getId()).isPresent()){
+        if (this.getVehicleByID(vehicle.getId()).isPresent()) {
             vehicleRepository.save(vehicle);
         }
-
     }
 
     @Override

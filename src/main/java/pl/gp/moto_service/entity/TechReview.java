@@ -25,7 +25,7 @@ public class TechReview {
     private double costs;
 
     @NotNull(message ="The vehicle field cannot be null" )
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private Vehicle vehicle;
 
 }

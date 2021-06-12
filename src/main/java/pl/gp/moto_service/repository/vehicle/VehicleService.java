@@ -14,7 +14,7 @@ public interface VehicleService {
 
     Optional<Vehicle> getVehicleByID(int id);
 
-    void updateVehicle(Vehicle vehicle);
+    void updateVehicle(@Valid Vehicle vehicle);
 
     void deleteVehicleByID(int id);
 

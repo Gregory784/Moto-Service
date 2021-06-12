@@ -1,10 +1,10 @@
 package pl.gp.moto_service.repository.service;
 
+
 import org.springframework.stereotype.Repository;
 import pl.gp.moto_service.entity.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class JpaServService implements ServService{
@@ -46,5 +46,6 @@ public class JpaServService implements ServService{
     public List<Service> findAllServiceByVehicleId(final int id) {
         return serviceRepository.findAllServiceByVehicleId(id);
     }
+
 
 }

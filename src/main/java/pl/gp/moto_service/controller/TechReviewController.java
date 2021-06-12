@@ -23,8 +23,15 @@ public class TechReviewController {
     private final TechViewModel techViewModel;
 
     @GetMapping("/techlist/{id}")
-    public String showTech(@PathVariable int id, Model model){
+    public String showActivTech(@PathVariable int id, Model model){
+        model.addAttribute("tech", techViewModel.showActivTech(id));
+        model.addAttribute("vehId", vehicleService.getVehicleByID(id).get().getId());
+        return "techreview/showtech";
+    }
+    @GetMapping("/techlist/{id}/all")
+    public String showAllTech(@PathVariable int id, Model model){
         model.addAttribute("tech", techViewModel.showInsurances(id));
+        model.addAttribute("vehId", vehicleService.getVehicleByID(id).get().getId());
         return "techreview/showtech";
     }
 

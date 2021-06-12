@@ -8,10 +8,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Table(name = "fluids")
-public class Fluid {
+public class Fluid extends DriveService {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

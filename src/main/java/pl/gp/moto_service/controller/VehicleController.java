@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.gp.moto_service.entity.Vehicle;
+import pl.gp.moto_service.model.DetailsVehicleViewModel;
 import pl.gp.moto_service.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
@@ -19,6 +20,7 @@ import java.util.Optional;
 public class VehicleController {
 
     private final VehicleService vehicleService;
+    private final DetailsVehicleViewModel detailsVehicleViewModel;
 
 
     @GetMapping("/")
@@ -59,7 +61,12 @@ public class VehicleController {
     @GetMapping("/getvehicle/{id}")
     public String showVehicleById (@PathVariable int id, Model model){
         vehicleService.getVehicleByID(id)
-                .ifPresent(vehicle -> model.addAttribute("vehicledetails", vehicle));
+                .ifPresent(vehicle ->
+                        model.addAttribute("vehicledetails", vehicle).
+                                addAttribute("distance", detailsVehicleViewModel.distance(id)).
+                                addAttribute("using", detailsVehicleViewModel.useTime(id)).
+                                addAttribute("servicecost", detailsVehicleViewModel.serviceCosts(id)));
+
         return "vehicle/getvehicle";
     }
 
@@ -73,10 +80,34 @@ public class VehicleController {
     public String upDateMileAge(@ModelAttribute("vehicle") Vehicle vehicle, BindingResult violations){
         Optional<Vehicle> current = vehicleService.getVehicleByID(vehicle.getId());
         if(current.isPresent()){
-            current.get().setMileage(vehicle.getMileage());
-            vehicleService.updateVehicle(current.get());
+            if(current.get().getMileage() < vehicle.getMileage()) {
+                current.get().setMileage(vehicle.getMileage());
+                vehicleService.updateVehicle(current.get());
+            } else {
+                return "redirect:../panel//updatemileage/"+vehicle.getId();}
         }
         return "redirect:../panel/vehicleslist";
     }
 
+    @GetMapping("/edit/{id}")
+    public String editVehicle(@PathVariable int id, Model model){
+        model.addAttribute("vehicle", vehicleService.getVehicleByID(id));
+        return "vehicle/addform";
+    }
+
+    @Transactional
+    @PostMapping("/edit/{id}")
+    public String editVehicle(@ModelAttribute @Valid Vehicle vehicle, BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+            return "vehicle/addform";
+        }
+        vehicleService.updateVehicle(vehicle);
+        return "redirect:../panel/vehicleslist";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteVehicle(@PathVariable int id){
+        vehicleService.deleteVehicleByID(id);
+        return "redirect:../vehicleslist";
+    }
 }

@@ -9,15 +9,19 @@
 <body>
 <main>
     <form th:onerror="" action="#" method="post" th:action="@{/panel/addservice/}" th:object="${service}">
-        <!--<fieldset th:if="${#fields.hasAnyErrors()}" > Incorrect data:
+        <fieldset th:if="${#fields.hasAnyErrors()}" > Incorrect data:
             <ul>
                 <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
             </ul>
-        </fieldset>-->
+        </fieldset>
             <fieldset>
             <legend>Enter data from oil service</legend>
-                <label>Service type
-                    <input type="text" th:field="*{serviceType}"/>
+                <label>-- Select service type --
+                    <select th:field="*{serviceType}">
+                        <option th:each="type : ${type}" type="radio"
+                                th:value="${type.toString()}"
+                                th:text="${type}"></option>
+                    </select>
                 </label>
                 <label>Service date:
                     <input type="date" th:field="*{serviceData}"/>
@@ -28,8 +32,11 @@
                 <label>Run interval
                     <input type="number" min="0" th:field="*{runInterval}"/>
                 </label>
-                <label>Time interval
+                <label>Time interval (example: 1 year)
                     <input type="number" min="0" th:field="*{timeInterval}"/>
+                </label>
+                <label>Quantity
+                    <input type="number" th:field="*{quantity}"/>
                 </label>
                 <label>Service cost
                     <input type="number" min="0" th:field="*{serviceCost}"/>
@@ -39,7 +46,7 @@
                         <select th:field="*{vehicle}">
                             <option th:each="vehicle : ${vehicles}" type="radio"
                                     th:value="${vehicle.id}"
-                                    th:text="${vehicle.name}"></option>
+                                    th:text="${vehicle.name}+' '+${vehicle.model}"></option>
                         </select>
 
                 </label>
@@ -48,7 +55,7 @@
                         <select th:field="*{oil}">
                             <option th:each="oil : ${oils}" type="radio"
                                     th:value="${oil.id}"
-                                    th:text="${oil.oilName}"></option>
+                                    th:text="${oil.oilName}+' '+${oil.viscositySAE}"></option>
                         </select>
 
                 </label>

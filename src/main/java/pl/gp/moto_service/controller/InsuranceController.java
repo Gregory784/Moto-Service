@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.gp.moto_service.entity.Insurance;
 import pl.gp.moto_service.entity.Vehicle;
 import pl.gp.moto_service.model.InsuranceViewModel;
-import pl.gp.moto_service.repository.insurance.TechReviewServices;
+import pl.gp.moto_service.repository.insurance.InsuranceServices;
 import pl.gp.moto_service.repository.vehicle.VehicleService;
 
 import javax.validation.Valid;
@@ -20,15 +20,22 @@ import java.util.List;
 @RequestMapping("panel")
 public class InsuranceController {
     private final VehicleService vehicleService;
-    private final TechReviewServices insuranceService;
+    private final InsuranceServices insuranceService;
     private final InsuranceViewModel insuranceViewModel;
 
 
 
     @GetMapping("/insurancelist/{id}")
     public String showInsurance(@PathVariable int id, Model model){
-       /* model.addAttribute("insurance", insuranceService.getInsuranceByVehicle_Id(id));*/
-        model.addAttribute("expire", insuranceViewModel.showInsurances(id));
+        model.addAttribute("expire", insuranceViewModel.activeList(id));
+        model.addAttribute("vehId", vehicleService.getVehicleByID(id).get().getId());
+        return "insurance/showinsurance";
+    }
+
+    @GetMapping("/insurancelist/{id}/all")
+    public String showAllInsurance(@PathVariable int id, Model model){
+        model.addAttribute("expire", insuranceViewModel.showAllList(id));
+        model.addAttribute("vehId", vehicleService.getVehicleByID(id).get().getId());
         return "insurance/showinsurance";
     }
 

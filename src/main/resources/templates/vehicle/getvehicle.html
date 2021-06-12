@@ -8,18 +8,19 @@
 </head>
 <body>
 <fieldset>
-<h2>Szczegóły pojazdu:</h2>
+<h2>Vehicle details</h2>
 <table>
     <thead>
     <tr>
-        <th>Nazwa</th>
+        <th>Name</th>
         <th>Model</th>
-        <th>Numer VIN</th>
-        <th>Data produkcji</th>
-        <th>Data zakupu</th>
-        <th>Numer rejestracyjny</th>
-        <th>Przebieg</th>
-        <th>Koszt zakupu</th>
+        <th>VIN Number</th>
+        <th>Production date</th>
+        <th>Date of purchase</th>
+        <th>Mileage - day of purchas</th>
+        <th>Registration ID</th>
+        <th>Cost of purchase</th>
+        <th>Actual - mileage</th>
     </tr>
     </thead>
     <!--/*@thymesVar id="vehicle" type="pl.gp.moto_service.entity.Vehicle"*/-->
@@ -30,18 +31,42 @@
         <td th:text="${vehicle.vin}"></td>
         <td th:text="${vehicle.productionData}"></td>
         <td th:text="${vehicle.purchaseData}"></td>
+        <td th:text="${vehicle.initialMileage} + ' km'"></td>
         <td th:text="${vehicle.registrationId}"></td>
-        <td th:text="${vehicle.mileage} +  ' km'"></td>
         <td th:text="${vehicle.operatingCosts} + ' pln'"></td>
+        <td th:text="${vehicle.mileage} +  ' km'"></td>
     </tr>
     </tbody>
 </table>
 </fieldset>
+<section>
+    <fieldset>
+        <h3 style="color: green">Statistics</h3>
+
+            <span style="display: block">
+            <div>You ran the distance:
+                <a th:text="${#numbers.formatInteger(distance, 3, 'WHITESPACE')} + ' km'"></a>
+            </div>
+            </span>
+            <span style="display: block">
+            <div>You are using this vehicle:
+                <a th:text="${using}"></a>
+            </div>
+            </span>
+            <span style="display: block">
+            <div>Actual total maintenance costs:
+                <a th:text="${#numbers.formatCurrency(servicecost)}"></a>
+            </div>
+            </span>
+
+    </fieldset>
+</section>
 <fieldset>
     <div>
-    <a th:href="@{/panel/vehicleslist}"><button>Wróć do panelu głównego</button>
-    </a>
-        <a th:href="@{/panel/arch/__${vehicledetails.id}__}"><button>Przenieś pojazd do archiwum</button></a>
+        <a th:href="@{/panel/vehicleslist}"><button style="color: darkviolet">Back to main panel</button></a>
+        <a th:href="@{/panel/arch/__${vehicledetails.id}__}"><button style="color: orange">Move to archive</button></a>
+        <a th:href="@{/panel/edit/__${vehicledetails.id}__}"><button style="color: blue">Edit vehicle</button></a>
+        <a th:href="@{/panel/delete/__${vehicledetails.id}__}"><button style="color: red">Delete</button></a>
     </div>
 </fieldset>
 </body>

@@ -12,6 +12,7 @@
 <table>
     <thead>
     <tr>
+        <th>Active</th>
         <th>Release data</th>
         <th>Expens</th>
         <th>Days to expiry</th>
@@ -27,6 +28,7 @@
     </tbody>-->
     <tbody th:each="tech : ${tech}">
     <tr style="height: 75px">
+        <td th:text="${tech.active} ? 'No': 'Yes'"></td>
         <td th:text="${tech.releaseData}"></td>
         <td th:text="${tech.costs} + ' pln'"></td>
         <td style="text-align: center" th:text="${tech.expireDay}"></td>
@@ -40,6 +42,8 @@
     <div>
         <a th:href="@{/panel/vehicleslist}"><button>Back to main panel</button></a>
         <a th:href="@{/panel/addtech}"><button>Add TechReview</button></a>
+        <a th:href="@{/panel/techlist/__${vehId}__/all}"><button>Show all list</button></a>
+        <a th:href="@{/panel/techlist/__${vehId}__}"><button>Hide no active</button></a>
     </div>
 </fieldset>
 </body>

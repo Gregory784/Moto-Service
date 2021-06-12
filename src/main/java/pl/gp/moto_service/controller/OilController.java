@@ -34,6 +34,7 @@ public class OilController {
         }
         System.out.println(oil.toString());
         oilService.createOil(oil);
-        return "oil/addoil";
+
+        return "redirect:../vehicleslist";
     }
 }

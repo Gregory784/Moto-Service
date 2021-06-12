@@ -20,9 +20,5 @@ public class Oil {
     @NotBlank(message = "The oil type field cannot be empty")
     //regex
     private String viscositySAE;
-    @Min(0)
-    private double quantity;
-    @Min(0)
-    private double oilCost;
 
 }

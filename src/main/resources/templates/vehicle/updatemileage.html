@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADD Vehicle</title>
+    <title>Vehicle mileage update</title>
     <link rel="stylesheet" href="https://igoradamenko.github.io/awsm.css/css/awsm.min.css">
 </head>
 <body>
@@ -13,24 +13,24 @@
     <a th:text="${vehicle.model}"></a>-->
     <!--/*@thymesVar id="vehicle" type="pl.gp.moto_service.entity.Vehicle"*/-->
     <form th:onerror="" action="#" method="post" th:action="@{/panel/updatemileage}" th:object="${vehicle}">
-        <fieldset th:if="${#fields.hasAnyErrors()}" > Błędnie wprowadzone dane:
+        <fieldset th:if="${#fields.hasAnyErrors()}" > Incorrect data:
             <ul>
                 <li th:each="err : ${#fields.allErrors()}" th:text="${err}" style="color: #ff0000"/>
             </ul>
         </fieldset>
         <fieldset>
-        <legend>Weryfikacja przebiegu dla:
+        <legend>Mileage update for:
         <a th:text="${vehicle.get().name}"></a>
         <a th:text="${vehicle.get().model}"></a>
         </legend>
 
-            <label>Aktualny przebieg to:
+            <label>Enter the current mileage greater than::
                 <input min="0" th:field="*{mileage}"/>
                 <input type="hidden" th:field="*{id}"/>
             </label>
         <p>
-            <button type="submit">Aktualizuj</button>
-            <button type="reset">Wróć</button>
+            <button type="submit">Confirm</button>
+            <button type="reset">Reset</button>
         </p>
         </fieldset>
     </form>

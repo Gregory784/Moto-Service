@@ -16,6 +16,10 @@
         </fieldset>
         <fieldset>
             <legend>Add new vehicle</legend>
+            <label>
+                <input type="hidden" th:field="*{id}"/>
+            </label>
+
             <label>Name
                 <input type="text" th:field="*{name}"/>
             </label>
@@ -34,8 +38,11 @@
             <label>Vehicle ID number
                 <input type="text" th:field="*{registrationId}"/>
             </label>
-            <label>Current milage
-                <input type="number" min="0" th:field="*{mileage}"/>
+            <label>Current mileage
+                <input  type="number" min="0" th:field="*{mileage}"/>
+            </label>
+            <label>Mileage on the day of purchase
+                <input type="number" min="0" th:field="*{initialMileage}"/>
             </label>
             <label>Price
                 <input type="number" min="0" th:field="*{operatingCosts}"/>

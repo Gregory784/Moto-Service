@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaInsuranceRepository implements TechReviewServices {
+public class JpaInsuranceRepository implements InsuranceServices {
 
     private InsuranceRepository insuranceRepository;
 

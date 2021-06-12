@@ -8,7 +8,7 @@
 </head>
 <body>
 <fieldset>
-    <h2>Services Panel <a th:text="${vehid.get().getName()}"></a> <a th:text="${vehid.get().getModel()}"></a></h2>
+    <h2>Services Panel <a th:text="${vehicle.get().getName()}"></a> <a th:text="${vehicle.get().getModel()}"></a></h2>
     <fieldset>Your oils - check list:
         <label>
             <select th:field="*{oils}">
@@ -25,30 +25,50 @@
         <thead>
         <tr>
             <th>Active</th>
-            <th>Type</th>
+            <th>Service type</th>
             <th>Oil Name</th>
+            <th>SAE</th>
+            <th>Service Data</th>
+            <th>Days to expire</th>
+            <th>Cut-off date for the next service</th>
+            <th>Mileage to the required service</th>
+
+
         </tr>
         </thead>
-        <!--/*@thymesVar id="service" type="pl.gp.moto_service.entity.Service"*/-->
+        <!--/*@thymesVar id="" type="pl.gp.moto_service.model.ServiceViewModel"*/-->
         <!--/*@thymesVar id="oil" type="pl.gp.moto_service.entity.Oil"*/-->
         <tbody th:each="service : ${service}">
         <tr style="height: 75px">
-            <td th:text="${service.active}"></td>
+            <td th:text="${service.active} ? 'Yes': 'No'"></td>
             <td th:text="${service.serviceType}"></td>
-            <td th:text="${service.oil}"></td>
+            <td th:text="${service.getOil().oilName}"></td>
+            <td th:text="${service.getOil().viscositySAE}"></td>
+            <td th:text="${service.serviceData}"></td>
+            <td th:text="${service.daysToNextService}" th:style="${service.daysToNextService < 30} ? 'color:red' : 'color: green'"></td>
+            <td th:text="${service.dateNextService}"></td>
+            <td th:text="${service.mileageToNextService}" th:style="${service.mileageToNextService < 3000} ? 'color:red' : 'color: green'"></td>
             <!--<td th:text="${service.getOil().getOilName()}"></td>-->
         </tr>
         </tbody>
     </table>
 
-    <div>
-        <a th:href="@{/panel/addservice/__${vehid.get().getId()}__}">
+    <fieldset> Sort:
+        <a th:href="@{/panel/service/__${vehicle.get().getId()}__/sortbydays}">
+            <button>by days to expire</button>
+        </a>
+        <a th:href="@{/panel/service/__${vehicle.get().getId()}__/sortbymileage}">
+            <button>by mileage interval</button>
+        </a>
+    </fieldset>
+    <fieldset> Action:
+        <a th:href="@{/panel/addservice}">
             <button>Add service</button>
         </a>
         <a th:href="@{/panel/vehicleslist}">
             <button>Back to Main panel</button>
         </a>
-    </div>
+    </fieldset>
 </fieldset>
 </body>
 </html>
