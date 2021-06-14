@@ -84,7 +84,7 @@ public class VehicleController {
                 current.get().setMileage(vehicle.getMileage());
                 vehicleService.updateVehicle(current.get());
             } else {
-                return "redirect:../panel//updatemileage/"+vehicle.getId();}
+                return "redirect:../panel/updatemileage/"+vehicle.getId();}
         }
         return "redirect:../panel/vehicleslist";
     }

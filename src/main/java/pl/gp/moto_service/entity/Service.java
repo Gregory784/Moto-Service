@@ -1,16 +1,22 @@
 package pl.gp.moto_service.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 
 @Data
 @Entity
 @Table(name = "services")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Service {
 
     @Id
@@ -32,7 +38,7 @@ public class Service {
     @Min(0)
     private double quantity;
     @DecimalMin("0")
-    private long serviceCost;
+    private double serviceCost;
 
     @ManyToOne
     private Vehicle vehicle;
@@ -40,4 +46,7 @@ public class Service {
     @ManyToOne
     private Oil oil;
 
+  /*  public Service(final int id, final String serviceType, final boolean isActiv, final LocalDate serviceData, final int serviceMileage, final int runInterval, final int timeInterval, final double quantity, final double serviceCost, final Vehicle vehicle, final Oil oil) {
+    }
+    public Service(){}*/
 }

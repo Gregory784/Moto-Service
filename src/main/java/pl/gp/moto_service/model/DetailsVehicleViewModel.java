@@ -1,5 +1,6 @@
 package pl.gp.moto_service.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 import pl.gp.moto_service.entity.Insurance;
@@ -16,55 +17,45 @@ import java.time.Period;
 import java.util.List;
 
 @Component
-@Data
+@AllArgsConstructor
 public class DetailsVehicleViewModel {
     private final VehicleService vehicleService;
     private final TechReviewService techReviewService;
     private final InsuranceServices insuranceServices;
     private final ServService servService;
 
-    public int distance(int id){
-        if (vehicleService.getVehicleByID(id).isPresent()){
-            Vehicle current = vehicleService.getVehicleByID(id).get();
-            return current.getMileage() - current.getInitialMileage();
-        }
-        return 0;
+    public int distance(int id) {
+        Vehicle current = vehicleService.getVehicleByID(id).orElseThrow();
+        return current.getMileage() - current.getInitialMileage();
     }
 
-    public String useTime(int id){
-        if (vehicleService.getVehicleByID(id).isPresent()){
-            Vehicle current = vehicleService.getVehicleByID(id).get();
-            Period useTime = Period.between(current.getPurchaseData(),LocalDate.now());
-
-            return String.format("%s days, %s months and %s years",
-                    useTime.getDays(),useTime.getMonths(),useTime.getYears());
-        }
-        return "The vehicle does not exist";
+    public String useTime(int id) {
+        Vehicle test = vehicleService.getVehicleByID(id).orElseThrow();
+        Period useTime = Period.between(test.getPurchaseData(), LocalDate.now());
+        return String.format("%s days, %s months and %s years",
+                useTime.getDays(), useTime.getMonths(), useTime.getYears());
     }
 
-    public double serviceCosts(int id){
-        if (vehicleService.getVehicleByID(id).isPresent()) {
-            Vehicle current = vehicleService.getVehicleByID(id).get();
-            List<Insurance> insuranceList = insuranceServices.getInsuranceByVehicle_Id(id);
-            List<TechReview> techReviewList = techReviewService.findTechReviewsByVehicleId(id);
-            List<Service> serviceList = servService.findAllServiceByVehicleId(id);
-            double insuranceCost = 0;
-            double techCost = 0;
-            double serviceCost = 0;
-            for (Insurance item: insuranceList
-                 ) {
-                insuranceCost += item.getCosts();
-            }
-            for (TechReview item: techReviewList
-                 ) {
-                techCost += item.getCosts();
-            }
-            for (Service serv: serviceList
-                 ) {
-                serviceCost += serv.getServiceCost();
-            }
-            return insuranceCost + techCost + serviceCost;
+    public double serviceCosts(int id) {
+        //Vehicle current = vehicleService.getVehicleByID(id).orElseThrow();
+        List<Insurance> insuranceList = insuranceServices.getInsuranceByVehicle_Id(id);
+        List<TechReview> techReviewList = techReviewService.findTechReviewsByVehicleId(id);
+        List<Service> serviceList = servService.findAllServiceByVehicleId(id);
+        double insuranceCost = 0;
+        double techCost = 0;
+        double serviceCost = 0;
+        for (Insurance item : insuranceList
+        ) {
+            insuranceCost += item.getCosts();
         }
-        return 0;
+        for (TechReview item : techReviewList
+        ) {
+            techCost += item.getCosts();
+        }
+        for (Service serv : serviceList
+        ) {
+            serviceCost += serv.getServiceCost();
+        }
+        return insuranceCost + techCost + serviceCost;
     }
 }

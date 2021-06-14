@@ -1,11 +1,14 @@
 package pl.gp.moto_service.model;
 
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.gp.moto_service.entity.Oil;
 import pl.gp.moto_service.entity.Service;
+import pl.gp.moto_service.entity.Vehicle;
 import pl.gp.moto_service.repository.service.ServService;
 
 import java.time.LocalDate;
@@ -38,24 +41,32 @@ public class ServiceViewModel extends Service {
             LocalDate endDate = serv.getServiceData().plusYears(serv.getTimeInterval());
             int endKm = (serv.getServiceMileage()+serv.getRunInterval())-serv.getVehicle().getMileage();
 
-            ServiceViewModel current = new ServiceViewModel();
-            current.setId(serv.getId());
-            current.setServiceType(serv.getServiceType());
-            current.setActive(serv.isActive());
-            current.setServiceData(serv.getServiceData());
-            current.setServiceMileage(serv.getServiceMileage());
-            current.setRunInterval(serv.getRunInterval());
-            current.setTimeInterval(serv.getTimeInterval());
-            current.setServiceCost(serv.getServiceCost());
-            current.setVehicle(serv.getVehicle());
-            current.setOil(serv.getOil());
-            current.setDateNextService(endDate);
-            current.setDaysToNextService(expireDays*(-1));
-            current.setMileageToNextService(endKm);
-
-            serviceList.add(current);
+            ServiceViewModel toSave = svmBulider().
+                    id(serv.getId()).
+                    serviceType(serv.getServiceType()).
+                    isActiv(serv.isActive()).
+                    serviceData(serv.getServiceData()).
+                    serviceMileage(serv.getServiceMileage()).
+                    runInterval(serv.getRunInterval()).
+                    timeInterval(serv.getTimeInterval()).
+                    quantity(serv.getQuantity()).
+                    serviceCost(serv.getServiceCost()).
+                    vehicle(serv.getVehicle()).
+                    oil(serv.getOil()).
+                    dateNextService(endDate).
+                    daysToNextService(expireDays*(-1)).
+                    mileageToNextService(endKm).
+                    build();
+            serviceList.add(toSave);
         }
         //serviceList.sort(Comparator.comparingInt(OilServiceModel::getDaysToNextService));
         return serviceList;
+    }
+    @Builder(builderMethodName = "svmBulider")
+    public ServiceViewModel (int id, String serviceType, boolean isActiv, LocalDate serviceData, int serviceMileage, int runInterval, int timeInterval, double quantity, double serviceCost, Vehicle vehicle, Oil oil, LocalDate dateNextService, int daysToNextService, int mileageToNextService){
+        super(id, serviceType, isActiv, serviceData, serviceMileage, runInterval, timeInterval, quantity, serviceCost, vehicle, oil);
+      this.dateNextService=dateNextService;
+      this.daysToNextService=daysToNextService;
+      this.mileageToNextService=mileageToNextService;
     }
 }
