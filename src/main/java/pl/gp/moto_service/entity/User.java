@@ -3,6 +3,7 @@ package pl.gp.moto_service.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,9 +22,8 @@ public class User {
     private String passwordConfirm;
 
     private boolean enabled;
-    private boolean tokenExpired;
 
     @ManyToMany
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
 }
