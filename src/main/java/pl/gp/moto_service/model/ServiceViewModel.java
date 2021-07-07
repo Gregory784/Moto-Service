@@ -59,9 +59,9 @@ public class ServiceViewModel extends Service {
                     build();
             serviceList.add(toSave);
         }
-        //serviceList.sort(Comparator.comparingInt(OilServiceModel::getDaysToNextService));
         return serviceList;
     }
+
     @Builder(builderMethodName = "svmBulider")
     public ServiceViewModel (int id, String serviceType, boolean isActiv, LocalDate serviceData, int serviceMileage, int runInterval, int timeInterval, double quantity, double serviceCost, Vehicle vehicle, Oil oil, LocalDate dateNextService, int daysToNextService, int mileageToNextService){
         super(id, serviceType, isActiv, serviceData, serviceMileage, runInterval, timeInterval, quantity, serviceCost, vehicle, oil);
