@@ -1,11 +1,13 @@
 package pl.gp.moto_service.repository.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import pl.gp.moto_service.entity.User;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Repository
 public class UserImplRepository implements UserServices {
     private final UserRepository userRepository;
     @Override
