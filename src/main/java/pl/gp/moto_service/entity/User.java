@@ -1,16 +1,17 @@
 package pl.gp.moto_service.entity;
 
 import lombok.Data;
-import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @Data
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String firstName;
     private String sureName;
     private String userName;
@@ -18,6 +19,9 @@ public class User {
 
     private String password;
     private String passwordConfirm;
+
+    private boolean enabled;
+    private boolean tokenExpired;
 
     @ManyToMany
     private Set<Role> roles;
