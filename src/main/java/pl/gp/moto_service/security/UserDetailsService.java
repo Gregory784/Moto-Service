@@ -17,7 +17,7 @@ public class UserDetailsService implements org.springframework.security.core.use
         User user = userServices.findUserByUserName(username);
 
         if (user == null){
-            throw new UsernameNotFoundException("Could not find user");
+            throw new UsernameNotFoundException("Could not find user: "+ username);
         }
         return new MotoUserDetails(user);
     }
