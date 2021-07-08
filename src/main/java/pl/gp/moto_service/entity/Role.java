@@ -17,5 +17,6 @@ public class Role {
 
     @ManyToMany
     private Set<User> users;
-    
-}
+
+    }
+

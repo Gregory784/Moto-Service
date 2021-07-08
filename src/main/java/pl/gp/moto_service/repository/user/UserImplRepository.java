@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import pl.gp.moto_service.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Repository
