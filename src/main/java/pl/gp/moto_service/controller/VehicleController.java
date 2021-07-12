@@ -25,7 +25,7 @@ public class VehicleController {
 
     @GetMapping("/")
     public String test (){
-        return "test";
+        return "welcome";
     }
 
     @GetMapping("/addvehicle")

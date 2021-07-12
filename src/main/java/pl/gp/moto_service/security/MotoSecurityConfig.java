@@ -16,7 +16,7 @@ public class MotoSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/panel/addvehicle").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/panel/vehicleslist/**")
                 .hasAnyAuthority("ADMIN","USER")
                 .anyRequest().authenticated()
