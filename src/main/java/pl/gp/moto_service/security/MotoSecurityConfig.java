@@ -15,14 +15,18 @@ public class MotoSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.requestMatchers()
+        http.authorizeRequests()
+                .antMatchers("/panel/addvehicle").permitAll()
                 .antMatchers("/panel/vehicleslist/**")
+                .hasAnyAuthority("ADMIN","USER")
+                .anyRequest().authenticated()
                 .and()
-                .httpBasic()
+                .formLogin()
+                    .defaultSuccessUrl("/panel/vehicleslist/")
                 .and()
                 .authorizeRequests()
-                .anyRequest()
-                .hasAnyRole("ADMIN","USER");
+
+                ;
     }
 
     @Override

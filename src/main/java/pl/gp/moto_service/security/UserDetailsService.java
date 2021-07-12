@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import pl.gp.moto_service.entity.User;
 import pl.gp.moto_service.repository.user.UserServices;
 
+import java.io.Serializable;
+
 @Service
 @RequiredArgsConstructor
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {
@@ -21,4 +23,5 @@ public class UserDetailsService implements org.springframework.security.core.use
         }
         return new MotoUserDetails(user);
     }
+
 }

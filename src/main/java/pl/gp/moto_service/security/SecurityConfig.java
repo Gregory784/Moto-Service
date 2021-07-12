@@ -17,9 +17,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/panel/vehicleslist/**")
-                .hasRole("USER")
+                .hasAnyRole("USER","ADMIN")
                 .and()
-                .formLogin().and()
+                .formLogin()
+                .defaultSuccessUrl("/panel/vehicleslist")
+                .and()
                 .httpBasic();
     }
 

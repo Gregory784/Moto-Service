@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 import pl.gp.moto_service.entity.Role;
 import pl.gp.moto_service.entity.User;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
 
 @AllArgsConstructor
 public class MotoUserDetails implements UserDetails {

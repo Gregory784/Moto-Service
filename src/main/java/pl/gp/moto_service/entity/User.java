@@ -3,6 +3,8 @@ package pl.gp.moto_service.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 @Data
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -26,8 +28,5 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
-
-    @OneToMany
-    private List<Vehicle> vehicles;
 
 }
